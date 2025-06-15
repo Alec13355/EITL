@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Events | Your Name">
+  <div class="max-w-4xl mx-auto">
+    <div class="bg-white shadow-sm rounded-lg p-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-8">Events</h1>
+
+      <!-- Upcoming Events -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-6">Upcoming Events</h2>
+        <div class="space-y-6">
+          <div class="border border-gray-200 rounded-lg p-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-xl font-medium text-gray-900">Tech Conference 2024</h3>
+                <p class="text-gray-600">March 15, 2024 • San Francisco, CA</p>
+              </div>
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                Upcoming
+              </span>
+            </div>
+            <p class="mt-4 text-gray-600">
+              Speaking about "The Future of Web Development" at the annual tech conference.
+            </p>
+            <div class="mt-4">
+              <a href="#" class="text-indigo-600 hover:text-indigo-500">Learn more →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Past Events -->
+      <section>
+        <h2 class="text-2xl font-semibold text-gray-900 mb-6">Past Events</h2>
+        <div class="space-y-6">
+          <div class="border border-gray-200 rounded-lg p-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-xl font-medium text-gray-900">Web Development Meetup</h3>
+                <p class="text-gray-600">January 20, 2024 • Virtual</p>
+              </div>
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                Completed
+              </span>
+            </div>
+            <p class="mt-4 text-gray-600">
+              Presented on "Modern JavaScript Best Practices" at the local web development meetup.
+            </p>
+            <div class="mt-4">
+              <a href="#" class="text-indigo-600 hover:text-indigo-500">View slides →</a>
+            </div>
+          </div>
+
+          <div class="border border-gray-200 rounded-lg p-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-xl font-medium text-gray-900">Developer Conference 2023</h3>
+                <p class="text-gray-600">October 5, 2023 • New York, NY</p>
+              </div>
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                Completed
+              </span>
+            </div>
+            <p class="mt-4 text-gray-600">
+              Led a workshop on "Building Scalable Applications with Node.js".
+            </p>
+            <div class="mt-4">
+              <a href="#" class="text-indigo-600 hover:text-indigo-500">View slides →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <div class="mt-12 text-center">
+        <p class="text-gray-600 mb-4">Interested in having me speak at your event?</p>
+        <a href="/contact" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout> 

@@ -1,0 +1,116 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { xml2js } from 'xml-js';
+import truncate from 'truncate-html';
+
+const RSS_URL = 'https://anchor.fm/s/104ead10c/podcast/rss';
+
+/** @type {{ title: string, pubDate: string, description: string, audio: string, link: string }[]} */
+let episodes = [];
+try {
+  const res = await fetch(RSS_URL);
+  const xml = await res.text();
+  const data = xml2js(xml, { compact: true }) as any;
+  episodes = data.rss.channel.item.slice(0, 3).map((item: any) => ({
+    title: item.title._cdata || item.title._text,
+    pubDate: item.pubDate._text,
+    description: item.description._cdata || item.description._text,
+    audio: item.enclosure?._attributes?.url,
+    link: item.link._text,
+  }));
+  // Truncate descriptions safely
+  episodes = episodes.map((ep: any) => ({
+    ...ep,
+    description: truncate(ep.description, 400, { byWords: false, ellipsis: '...' })
+  }));
+} catch (e) {
+  episodes = [];
+}
+---
+
+<Layout title="Podcast | Your Name">
+  <div class="max-w-4xl mx-auto bg-tealbg text-sand rounded-lg shadow-sm p-8">
+
+    <h1 class="text-3xl font-bold text-sand mb-8">Engineer In The Loop</h1>
+
+    <!-- Podcast Description -->
+    <div class="mb-12">
+      <section class="bg-gray-50 rounded-lg p-8 text-center">
+      <p class="text-lg text-gray-900 mb-6">
+        is the weekly show for software engineers who ship with models in the mix. Host Alec Harrison chats with practitioners about architecture decisions, failure modes, and the workflows that keep humans firmly "in the loop." Expect repo round-ups, post-mortems, and listener Q&A—with actionable code examples and zero buzzword fluff!
+      </p>
+    <img src="/Engineer.png" alt="Engineer In The Loop" class="mx-auto mb-8 max-w-xs w-full rounded-lg shadow-lg" />
+
+      <div class="flex flex-wrap gap-4">
+        <a href="https://www.youtube.com/@EngineerInTheLoop" target="_blank" rel="noopener" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-accent hover:bg-accent/80">
+          <svg class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a2.994 2.994 0 0 0-2.112-2.112C19.228 3.5 12 3.5 12 3.5s-7.228 0-9.386.574A2.994 2.994 0 0 0 .502 6.186C0 8.344 0 12 0 12s0 3.656.502 5.814a2.994 2.994 0 0 0 2.112 2.112C4.772 20.5 12 20.5 12 20.5s7.228 0 9.386-.574a2.994 2.994 0 0 0 2.112-2.112C24 15.656 24 12 24 12s0-3.656-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          Watch on YouTube
+        </a>
+        <a href="https://podcasts.apple.com/us/podcast/engineer-in-the-looop/id1691987045" target="_blank" rel="noopener" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-accent hover:bg-accent/80">
+          <img src="/Podcasts_(iOS).svg" alt="Apple Podcasts" class="h-5 w-5 mr-2 inline" />
+          Listen on Apple Podcasts
+        </a>
+        <a href="https://open.spotify.com/show/1E5k4N5khiWtKV2DMWetuZ" target="_blank" rel="noopener" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-accent hover:bg-accent/80">
+          <img src="/Spotify_icon.svg" alt="Spotify" class="h-5 w-5 mr-2 inline" />
+          Listen on Spotify
+        </a>
+        <a href="https://anchor.fm/s/104ead10c/podcast/rss" target="_blank" rel="noopener" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-accent hover:bg-accent/80">
+          <svg class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M19.199 3.337A11.945 11.945 0 0 0 12 1C5.373 1 0 6.373 0 13c0 6.627 5.373 12 12 12s12-5.373 12-12c0-2.197-.593-4.26-1.637-6.021l-1.164.676A10.003 10.003 0 0 1 22 13c0 5.523-4.477 10-10 10S2 18.523 2 13c0-5.523 4.477-10 10-10 2.01 0 3.89.594 5.479 1.617l.72-1.28z"/></svg>
+          RSS Feed
+        </a>
+      </div>
+    </div>
+  </section>
+
+    <!-- Latest Episodes -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-sand mb-6">Latest Episodes</h2>
+      <div class="space-y-6">
+        {episodes.length === 0 && (
+          <div class="text-sand">No episodes found.</div>
+        )}
+        {episodes.map((episode: any, idx: number) => (
+          <div class="border border-gray-200 rounded-lg p-6 bg-white text-gray-900">
+            <div class="flex items-start justify-between">
+              <div>
+                <h3 class="text-xl font-medium text-gray-900 mb-2">{episode.title}</h3>
+                <p class="text-gray-600 mb-2">{episode.pubDate}</p>
+                <div class="prose prose-sm text-gray-600 mb-4" set:html={episode.description} />
+              </div>
+              {idx === 0 && (
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 ml-4">
+                  New
+                </span>
+              )}
+            </div>
+            {episode.audio && (
+              <audio controls class="w-full mb-2">
+                <source src={episode.audio} type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
+            )}
+            <a href={episode.link} target="_blank" rel="noopener" class="text-accent hover:underline">Full Episode →</a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Subscribe Section -->
+    <section class="bg-gray-50 rounded-lg p-8 text-center">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-4">Subscribe to the Podcast</h2>
+      <p class="text-gray-600 mb-6">
+        Never miss an episode! Subscribe to get notified when new episodes are released.
+      </p>
+      <div class="flex justify-center space-x-4">
+        <a href="https://podcasts.apple.com/us/podcast/engineer-in-the-looop/id1691987045" target="_blank" rel="noopener" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-accent hover:bg-accent/80">
+          <img src="/Podcasts_(iOS).svg" alt="Apple Podcasts" class="h-5 w-5 mr-2 inline" />
+          Subscribe on Apple Podcasts
+        </a>
+        <a href="https://open.spotify.com/show/1E5k4N5khiWtKV2DMWetuZ" target="_blank" rel="noopener" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-accent hover:bg-accent/80">
+          <img src="/Spotify_icon.svg" alt="Spotify" class="h-5 w-5 mr-2 inline" />
+          Subscribe on Spotify
+        </a>
+      </div>
+    </section>
+  </div>
+</Layout> 

@@ -1,0 +1,68 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="min-h-screen bg-tealbg text-sand">
+		<nav class="bg-tealbg border-b border-accent">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="flex justify-between h-16">
+					<div class="flex">
+						<div class="flex-shrink-0 flex items-center">
+							<a href="/" class="flex items-center">
+								<img src="/Engineer.png" alt="Engineer In The Loop Logo" class="h-12 w-12 object-contain rounded-md mr-2" />
+							</a>
+						</div>
+						<div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+							<a href="/" class="border-transparent text-sand hover:text-accent hover:border-accent inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">
+								Home
+							</a>
+							<a href="/workwithme" class="border-transparent text-sand hover:text-accent hover:border-accent inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">
+								Work With Me
+							</a>
+							<!-- <a href="/events" class="border-transparent text-sand hover:text-accent hover:border-accent inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">
+								Events
+							</a> -->
+							<a href="/podcast" class="border-transparent text-sand hover:text-accent hover:border-accent inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">
+								Podcast
+							</a>
+							<a href="/blog" class="border-transparent text-sand hover:text-accent hover:border-accent inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">
+								Blog
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+			<slot />
+		</main>
+
+		<footer class="bg-tealbg border-t border-accent mt-12">
+			<div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+				<p class="text-center text-sand text-sm">
+					© {new Date().getFullYear()} Xerikos LLC. All rights reserved.
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>
+
+<style is:global>
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+</style>
