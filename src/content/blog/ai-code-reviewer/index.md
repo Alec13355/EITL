@@ -18,15 +18,15 @@ I've been experimenting with Copilot Code Review for a while now, and the experi
 
 ### VS Code Suggestions Are Super Cool!
 The real-time suggestions that appear in Visual Studio Code are not only insightful but also a blast to work with. They seamlessly integrate into my workflow and provide just the right nudge to improve my code quality.  
-![VS Code Suggestions](./VsCodeSuggestion.png)
+![VS Code Suggestions]/assets/VsCodeSuggestion.png
 
 ### Requesting a Code Review is as Natural as Talking to a Colleague
 One of the most impressive features is how you can ask for a code review just like you would ask a person. Whether you set up automatic reviews through repository rules or trigger a review on-demand, the process feels conversational and intuitive.  
-![Code Review Request](./CodeReviewRequest.png)
+![Code Review Request]/assets/CodeReviewRequest.png
 
 ### Pull Request (PR) Suggestions at a Glance
 Seeing PR suggestions right inside GitHub is a game changer. It makes the code review process more interactive and visual, which means fewer context switches and more focus on writing great code.  
-![PR Suggestions](./PRSuggestions.png)
+![PR Suggestions]/assets/PRSuggestions.png
 
 ## Productivity Gains and Cost Savings
 

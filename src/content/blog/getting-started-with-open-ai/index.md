@@ -31,20 +31,20 @@ So this is all great, but how do you get access to it? Unlike most GA products i
 Now, assuming you’ve gotten access, you get to go and build your first service! It will look similar to this:
 
 
-![Landing Page](./ai1.png)
+![Landing Page]/assets/ai1.png
 
 
 This will launch Azure Open AI Studio, which is similar to other Azure services with portal-specific developer areas.
 
-![Open AI Helper](./ai2.png)
+![Open AI Helper]/assets/ai2.png
 
 It will look similar to this and try to get you to deploy your first model. It will ask you which of the few models to choose from and once you pick one you will be ready to enter a prompt:
 
-![Open AI Helper Prompt](./ai3.png)
+![Open AI Helper Prompt]/assets/ai3.png
 Here is an example of a prompt for a product name.
 You can also click “View code” to figure out how to run this via Python! This will mean all you have to do is drop this code into an environment and you can have your own version of ChatGPT (or at least name generator) up and running. You also have some knobs to tweak things if you’d like:
 
-![Levers](./ai4.png)
+![Levers]/assets/ai4.png
 
 ·       **Temperature** is how accurate you want the response to be or randomness in your response back
 
