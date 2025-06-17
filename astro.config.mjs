@@ -24,5 +24,9 @@ export default defineConfig({
   // Copy content/blog directory to public during build
   build: {
     assets: 'assets',
+    copyPublicDir: true,
+    copyPublicDirOptions: {
+      include: ['content/blog/**/*.png'],
+    },
   },
 });
