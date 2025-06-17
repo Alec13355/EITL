@@ -11,8 +11,8 @@ There are a few different tools that Azure provides to help you debug app servic
 ### Kudu Console
 
 The first tools and slightly older one is the Kudu console. You can navigate it a few different ways. The first and easiest is in your url add .scm before the .azurewebsites section of your site. For example in this photo you see our test app service URL is https://test-app-service-for-blog.azurewebsites.net so the URL to get to our Kudu console is going to be https://test-app-service-for-blog.scm.azurewebsites.net/
-![Advanced Tools Photo]/assets/AdvancedTools.png
-At a high level the Kudu wiki is located [here.](https://github.com/projectkudu/kudu/wiki) The console looks like this! ![Kudu Console Photo]/assets/Kudu.png
+![Advanced Tools Photo](/assets/AdvancedTools.png)
+At a high level the Kudu wiki is located [here.](https://github.com/projectkudu/kudu/wiki) The console looks like this! ![Kudu Console Photo](/assets/Kudu.png)
 This page has some more of the old school .Net Framework debugging items. You can look into the appsettings, deployments, source control info, and a bunch of other items und the REST API. There are also many headers.
 
 ##### Environment
@@ -37,7 +37,7 @@ You can look into different extensions for your app service. Depending on what y
 
 ### App Service Editor
 
-The next section for debugging is the App Service Editor. This is in preview so some things might be subject to change. To get there via URL is more difficult for our sample URL of you instead go to https://test-app-service-for-blog.scm.azurewebsites.net/dev/wwwroot/. Instead you can navigate here via the UI! ![App Service Editor Photo]/assets/AppService.png This page looks like this ![App Service Editor Actual Photo]/assets/ASEditor.png This page is super cool when you deploy a real app. Because my app service doesn't have code here there is no files. However, you can do a lot from this view. You can see all of the DLLs, appsettings, and even some HTML for your app! This is really cool with HTML apps or other apps that you can make minor changes in a deployed environment before you re-trigger everything. Another thing I've used this for is checking out the appsettings.json to validate things have been subbed and deployed correctly. Depending on how locked down it is you can also change make changes and see them go live without having to fully redeploy your apps. You can also add and remove DLLs (I wouldn't recommend doing this but you can).
+The next section for debugging is the App Service Editor. This is in preview so some things might be subject to change. To get there via URL is more difficult for our sample URL of you instead go to https://test-app-service-for-blog.scm.azurewebsites.net/dev/wwwroot/. Instead you can navigate here via the UI! ![App Service Editor Photo](/assets/AppService.png This page looks like this ![App Service Editor Actual Photo]/assets/ASEditor.png) This page is super cool when you deploy a real app. Because my app service doesn't have code here there is no files. However, you can do a lot from this view. You can see all of the DLLs, appsettings, and even some HTML for your app! This is really cool with HTML apps or other apps that you can make minor changes in a deployed environment before you re-trigger everything. Another thing I've used this for is checking out the appsettings.json to validate things have been subbed and deployed correctly. Depending on how locked down it is you can also change make changes and see them go live without having to fully redeploy your apps. You can also add and remove DLLs (I wouldn't recommend doing this but you can).
 
 ### Summary
 

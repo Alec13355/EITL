@@ -4,7 +4,7 @@ date: "2025-01-20T10:10:03.284Z"
 description: Have you ever come across a piece of software that feels so intuitive, you wonder how you managed without it? That’s exactly how I felt when I first started using Descript. As someone who regularly edits podcasts, creates videos, and transcribes interviews, Descript has quickly become one of my go-to tools. Below is a rundown of my experience and honest thoughts on this all-in-one platform.
 ---
 
-![UI]/assets/UI.png
+![UI](/assets/UI.png)
 
 # First Impressions
 The first thing that struck me about Descript was its clean, user-friendly interface. From the moment I launched the app, I felt guided through each step:
@@ -32,7 +32,7 @@ One of the things I love most about Descript is the ability to edit audio and vi
 
 The AI tools were pretty amazing. I was able to auto-magically just be able to remove any and all filler worlds. 
 
-![Filler Removal]/assets/Unused.png
+![Filler Removal](/assets/Unused.png)
 
 Using this I won't ever have filler words in a podcast ever again, and that I can easily remove in under 3 minutes. 
 

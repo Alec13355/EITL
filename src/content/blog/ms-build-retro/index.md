@@ -4,7 +4,7 @@ date: "2021-07-15T01:10:03.284Z"
 description: Was Microsoft Build Worth It?
 ---
 
-![Microsoft Build]/assets/MSBuild.png
+![Microsoft Build](/assets/MSBuild.png)
 *Copyright Microsoft*
 
 ## What is a retro?
