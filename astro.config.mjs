@@ -5,20 +5,4 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind()],
-  publicDir: 'public',
-  vite: {
-    build: {
-      rollupOptions: {
-        input: {
-          main: './src/pages/index.astro',
-        },
-        output: {
-          dir: 'dist',
-          entryFileNames: 'assets/[name].js',
-          chunkFileNames: 'assets/[name].js',
-          assetFileNames: 'assets/[name].[ext]',
-        },
-      },
-    },
-  },
 });
