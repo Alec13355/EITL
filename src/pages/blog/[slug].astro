@@ -1,6 +1,7 @@
 ---
-import { getEntryBySlug, getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { formatDate } from '../../utils/date';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -8,17 +9,29 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const post = await getEntryBySlug('blog', slug);
-if (!post) throw new Error('Post not found');
+const post = (await getCollection('blog')).find(post => post.slug === slug);
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+
 const { Content } = await post.render();
 ---
 
 <Layout title={post.data.title}>
-  <article class="max-w-3xl mx-auto bg-white text-gray-900 rounded-lg shadow-sm p-8">
-    <h1 class="text-3xl font-bold mb-4">{post.data.title}</h1>
-    <p class="text-gray-600 mb-8">{post.data.date}</p>
-    <div class="prose max-w-none">
-      <Content />
-    </div>
+  <article class="prose prose-lg mx-auto">
+    <h1>{post.data.title}</h1>
+    <p class="text-gray-500">{formatDate(post.data.date)}</p>
+    <Content />
   </article>
-</Layout> 
+</Layout>
+
+<script>
+  // Update image paths to use the assets directory
+  document.querySelectorAll('img').forEach(img => {
+    const src = img.getAttribute('src');
+    if (src && !src.startsWith('http')) {
+      img.setAttribute('src', `../../assets/${src}`);
+    }
+  });
+</script> 
