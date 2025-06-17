@@ -19,19 +19,9 @@ const { Content } = await post.render();
 ---
 
 <Layout title={post.data.title}>
-  <article class="prose prose-lg mx-auto">
+  <article class="prose prose-lg prose-invert mx-auto text-white">
     <h1>{post.data.title}</h1>
-    <p class="text-gray-500">{formatDate(post.data.date)}</p>
+    <p class="text-white">{formatDate(post.data.date)}</p>
     <Content />
   </article>
 </Layout>
-
-<script>
-  // Update image paths to use the assets directory
-  document.querySelectorAll('img').forEach(img => {
-    const src = img.getAttribute('src');
-    if (src && !src.startsWith('http')) {
-      img.setAttribute('src', `../../assets/${src}`);
-    }
-  });
-</script> 
