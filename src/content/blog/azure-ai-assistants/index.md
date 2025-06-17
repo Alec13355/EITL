@@ -14,34 +14,34 @@ Assistants are purpose-built AIs that can allow you to connect to your data, aut
 
 ## What does it look like using these?
 Just a quick reminder this is in public preview. So while this is the current state it doesn't mean this is the final state. Let's start with things right out of the box! 
-![Assistant]/assets/Assistant.png
+![Assistant](/assets/Assistant.png)
 
 We can see this looks fairly similar to the chat option. However, unlike the single template you have for chat, we can have multiple assistants. This allows you to have different assistants for different tasks. We can add functions which are essentially APIs. This allows your assistant to call APIs either within your organization or outside of your walls if you want to enable it to get more up to date information. This means even if your model is only as current as it was trained, you can augment it with APIs to get the most up to date information.
 
 The first section is our instructions. That is similar to the template section we have for chat. Nothing much is different from there other than we can easily save and open each assistant! 
-![Open]/assets/Open.png
+![Open](/assets/Open.png)
 You can see the first assistant I created. 
 
 After that is creating a function. This is where you can add your APIs. By default, you have two example APIs to hit. One is the weather api and one is a stock api. Here is an example format of a function. 
-![ExampleFunction]/assets/ExampleFunction.png
+![ExampleFunction](/assets/ExampleFunction.png)
 I also created a few duplicates to see if I could quickly hit a limit but we can support connecting to at least 4 different APIs.
-![FourFunctions]/assets/MultiAPiExample.png
+![FourFunctions](/assets/MultiAPiExample.png)
 After that we can have code interpreter on or off. It is a toggle.
-![CodeInterpreter]/assets/CodeInterp.png
+![CodeInterpreter](/assets/CodeInterp.png)
 The final feature on the left hand side is files. If you have less than 20 files you can potentially get file search on your models without an Azure AI Search instance. This could save you quite a bit of money! 
-![File Upload]/assets/FileUpload.png
+![File Upload](/assets/FileUpload.png)
 You can also see the vast amount of file formats that are supported. We can also see the max files today is 20. 
-![Max files]/assets/MaxFiles.png
+![Max files](/assets/MaxFiles.png)
 
 ## Using AI
 Now we can actually use the AI so in this example I have a very basic assistant setup and the weather API wired up. I asked it what the weather. It asked me the format I'd like the response back in.
-![Weather]/assets/ExampleFormat.png
+![Weather](/assets/ExampleFormat.png)
 I put the format I wanted it back in and hit go. Then, I got back the weather in Seattle! 
-![Seattle]/assets/Answer.png
+![Seattle](/assets/Answer.png)
 Every time we make calls or configure things, we can see the logs on the right.
-![Logs]/assets/Logs.png
+![Logs](/assets/Logs.png)
 This shows us the URIs that are being called and the api responses we are getting back.
-![APIResponse]/assets/ApiRepsonse.png
+![APIResponse](/assets/ApiRepsonse.png)
 We are able to use the URIs to call if we want to use the APIs outside of the assistant.
 
 ## Wrap Up

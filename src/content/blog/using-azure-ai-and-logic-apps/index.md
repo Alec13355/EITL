@@ -23,7 +23,7 @@ Note: there is a way to use Azure Communication Services to do this if you want 
 
 TWILIO ACCOUNT
 We are going to use a trial account for two-way SMS communications.
-![twillio]/assets/twillio.png
+![twillio](/assets/twillio.png)
 
 
 Our architecture diagram demonstrates how our userswill send questions via SMS to our Twilio number. That number will then triggera post request to an Azure Logic App, which will pass our request along toAzure Open AI Service.
@@ -38,61 +38,61 @@ If you don't have access to Azure Open AI, you can request it here. As of right 
 The first thing we want to do is to create an Azure Open AI service in Azure Open AI Studio. Then, we want to make sure we deploy a New Model.
 
 You can deploy text-davinci-003 as a good general model for a Q&A service.
-![img2]/assets/img2.png
+![img2](/assets/img2.png)
 
 You can also deploy code-davinci-002 if you are going to ask more code questions, but asking and answering those via SMS might be hard to read. You could also use gpt-35-turbo for faster responses, but it will cost a bit more and I haven't seen latency as an issue with the text model.
 
 Now that your model is deployed you can play with it in the GPT playground. Experiment with questions, lengths of responses, how much you want it to think, the amount of responses, how close it is, how much liberty it takes, etc. Here are some out of the box demo items to see examples in action.
-![img3]/assets/img3.png
+![img3](/assets/img3.png)
 
 
 Now we want to view the code and the JSON by clicking the view code button and we can save it off later for our Logic App.
-![img4]/assets/img4.png
+![img4](/assets/img4.png)
 
 We also want to get the password for this, so exit the playground and go back to the service in the portal. You can find the key here. We will need it for later.
-![img5]/assets/img9.png
+![img5](/assets/img9.png)
 
 
 Now we want to create our logic app. Here is the high-level order of steps.
-![img6]/assets/img6.png
+![img6](/assets/img6.png)
 
 
 We want to start with “an HTTP request is received.” That will be our ingress to our logic app via Post. Once this URL is saved it will be used in Twilio so make sure to save it for later.
-![img7]/assets/img7.png
+![img7](/assets/img7.png)
 
 
 Now we want to send the text we get from Twilio to our AI service that will look like step two!
-![img8]/assets/img8.png
+![img8](/assets/img8.png)
 
 
 After this, we want to parse the JSON we getback from the AI service so we can evaluate it.
-![img9]/assets/img9.png
+![img9](/assets/img9.png)
 
 
 You can use the payload from the playground to map this JSON.
 Finally, we want to have a “For Each” step:
-![img10]/assets/img10.png
+![img10](/assets/img10.png)
 
 
 Inside of the “For Each” we are going to sign into Twilio and send the response back. This is because the AI model is technically a list, since you can have multiple responses (in this case we configured the app to use 1). “Text” is the text response, and the “to phone number” if the from phone number from the original HTTP ingress.
 
 ### TWILIO PART 2
 Now, we need to configure where Twilio sends texts when we receive them.
-![img11]/assets/img11.png
+![img11](/assets/img11.png)
 
 
 Now we are finally configured! Assuming things worked well we can fire a request and get a text back!
-![img12]/assets/img12.png
+![img12](/assets/img12.png)
 
 
 ### Helpful Debugging
 If you are having issues with your Logic App you can exit the Designer and see where your Run was failing. You can walk through errors in the Logic App that would look like this:
-![img13]/assets/img13.png
+![img13](/assets/img13.png)
 
 
 If you don't see any errors here, Twilio also has a Monitor section that looks like this:
 
-![img14]/assets/img14.png
+![img14](/assets/img14.png)
 
 
 ### Conclusion

@@ -5,7 +5,7 @@ description: Have you heard of Power Apps or fusion teams? Are they the future? 
 category: Azure
 ---
 
-![Fusion Team]/assets/fusion.png
+![Fusion Team](/assets/fusion.png)
 *Copyrights DBZ*
 
 ## What are fusion teams, citizen developers, professional developers?

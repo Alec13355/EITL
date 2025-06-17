@@ -3,7 +3,7 @@ title: Linkedin Request For Services
 date: "2025-01-16T22:10:03.284Z"
 description: This post will summarize my experience with the Linkedin request for services option.
 ---
-![PEBKAC Error]/assets/pebcac_1_.jpg
+![PEBKAC Error](/assets/pebcac_1_.jpg)
 Image Credit [Major Geeks](https://www.majorgeeks.com/content/page/pebkac.html)
 
 ## Before We Get Started
@@ -30,7 +30,7 @@ One thing I didn't really like about this process is it is 100% setup for you to
 #### Getting Requests
 I think this is where I started getting frustrated with this tool. So just a heads up, it might get a little heated. You start getting requests for work, and as a "feature" of Linkedin premium it will send you leads for people who have requested similar services to what you offer. The form they fill out to request services from you is fixed and you have to work with the questions they have. If you click on someone with request for services you'll see there's a default checkbox to send your request to others offering similar work.
 
-![Proposal form]/assets/proposal.png
+![Proposal form](/assets/proposal.png)
 
 In theory this sounds like a great idea. Let's say I want to work with myself Alec Harrison. My project needs to kick off ASAP and let's say in this case Alec is on vacation not checking his Linkedin. Well have no fear that request you as the person looking for help is now sent out to a few premium users. So I not only have competition, but hopefully I can find someone to help me in my time frame. 
 
