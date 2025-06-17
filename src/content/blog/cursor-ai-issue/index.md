@@ -9,7 +9,7 @@ description: Cursor’s support bot hallucinated a brand‑new licensing policy,
 > Cursor’s support bot hallucinated a brand‑new licensing policy, sparking a Reddit revolt and a wave of cancellations.  
 > This post unpacks *what went wrong* and delivers a practical playbook for building customer‑facing AI assistants that **don’t** torch your revenue—or your reputation.
 
-![Cursor Support Bot](./chatgpt.png)
+![Cursor Support Bot]/assets/chatgpt.png
 
 ---
 
