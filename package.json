@@ -11,7 +11,7 @@
   "dependencies": {
     "@astrojs/markdown-remark": "^6.3.2",
     "@tailwindcss/typography": "^0.5.16",
-    "astro": "^5.9.2",
+    "astro": "^5.10.1",
     "truncate-html": "^1.2.1",
     "xml-js": "^1.6.11"
   },
