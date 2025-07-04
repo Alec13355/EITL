@@ -1,5 +1,5 @@
 ---
-title: Hitting My Reps: 73 Podcast Episodes and Counting, Thanks to AI and My iPhone
+title: Hitting My Reps 73 Podcast Episodes and Counting, Thanks to AI and My iPhone
 date: "2025-07-03T10:10:03.284Z"
 description: I was curious. How many episodes have we actually put out? It feels like a lot, but sometimes the numbers can surprise you. And true to Clark's advice, I wanted to find a quick, efficient way to get that count.
 ---
