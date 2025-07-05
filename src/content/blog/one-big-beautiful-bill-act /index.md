@@ -1,8 +1,7 @@
 ---
 title: Why AI Might Not Be The Only Reason We Are Losing Jobs and How Congress just "un-broke" Section 174.
 date: "2025-07-05T22:10:03.284Z"
-description: TL;DR — Congress just "un-broke" Section 174.
-As of July 4 2025, the newly signed One Big Beautiful Bill Act (OBBBA) restores immediate write-offs for U.S. R&D spending via a fresh §174A, lets companies retro-deduct anything they were forced to capitalize for 2022-24, and leaves foreign research on the old 15-year track. Startups get cash back; tech giants like Microsoft recover billions; everyone still needs decent project records—just fewer spreadsheet acrobatics.
+description: TL;DR — Congress just "un-broke" Section 174. As of July 4 2025, the newly signed One Big Beautiful Bill Act (OBBBA) restores immediate write-offs for U.S. R&D spending via a fresh §174A, lets companies retro-deduct anything they were forced to capitalize for 2022-24, and leaves foreign research on the old 15-year track. Startups get cash back; tech giants like Microsoft recover billions; everyone still needs decent project records—just fewer spreadsheet acrobatics.
 category: AI & Machine Learning
 ---
 
