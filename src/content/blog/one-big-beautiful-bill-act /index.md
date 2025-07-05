@@ -17,7 +17,7 @@ For decades, Section 174 was like a secret superpower for innovation. Since 1954
 ### The TCJA Twist: When Immediate Expensing Died (for a bit)
 Then came the Tax Cuts and Jobs Act (TCJA) in 2017. While it had a lot of moving parts, one provision, quietly tucked away, hit us hard starting January 1, 2022. The immediate expensing of R&D costs? Gone. Poof.
 
-Now, **domestic R&D costs have to be capitalized and amortized over five years**, and if you're doing any R&D overseas, that stretches to a whopping 15 years. And we're not just talking about lab coats and beakers here. This impacts a huge range of tech-centric expenses:
+After 2022, **domestic R&D costs have to be capitalized and amortized over five years**, and if you're doing any R&D overseas, that stretches to a whopping 15 years. And we're not just talking about lab coats and beakers here. This impacts a huge range of tech-centric expenses:
 
 - **Software development costs**: Every line of code, every new feature, every internal tool – it's all in there.
 - **Wages and salaries**: Your brilliant AI researchers, data scientists, ML engineers, product managers – their compensation is now part of this.
