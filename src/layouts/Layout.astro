@@ -46,6 +46,39 @@ const { title } = Astro.props;
 							</a> -->
 						</div>
 					</div>
+					
+					<!-- Mobile menu button -->
+					<div class="sm:hidden flex items-center">
+						<button id="mobile-menu-button" class="text-sand hover:text-accent focus:outline-none focus:text-accent">
+							<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+							</svg>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Mobile menu -->
+			<div id="mobile-menu" class="sm:hidden hidden">
+				<div class="px-2 pt-2 pb-3 space-y-1 bg-tealbg border-t border-accent">
+					<a href="/" class="text-sand hover:text-accent block px-3 py-2 text-base font-medium transition-colors">
+						Home
+					</a>
+					<a href="/about" class="text-sand hover:text-accent block px-3 py-2 text-base font-medium transition-colors">
+						About
+					</a>
+					<a href="/blog" class="text-sand hover:text-accent block px-3 py-2 text-base font-medium transition-colors">
+						Blog
+					</a>
+					<a href="/podcast" class="text-sand hover:text-accent block px-3 py-2 text-base font-medium transition-colors">
+						Podcast
+					</a>
+					<a href="/workwithme" class="text-sand hover:text-accent block px-3 py-2 text-base font-medium transition-colors">
+						Work With Me
+					</a>
+					<!-- <a href="/events" class="text-sand hover:text-accent block px-3 py-2 text-base font-medium transition-colors">
+						Events
+					</a> -->
 				</div>
 			</div>
 		</nav>
@@ -61,6 +94,33 @@ const { title } = Astro.props;
 				</p>
 			</div>
 		</footer>
+
+		<script>
+			// Mobile menu toggle
+			const mobileMenuButton = document.getElementById('mobile-menu-button');
+			const mobileMenu = document.getElementById('mobile-menu');
+
+			if (mobileMenuButton && mobileMenu) {
+				mobileMenuButton.addEventListener('click', () => {
+					mobileMenu.classList.toggle('hidden');
+				});
+
+				// Close menu when clicking outside
+				document.addEventListener('click', (event) => {
+					const target = event.target as Node;
+					if (!mobileMenuButton.contains(target) && !mobileMenu.contains(target)) {
+						mobileMenu.classList.add('hidden');
+					}
+				});
+
+				// Close menu when window is resized to desktop size
+				window.addEventListener('resize', () => {
+					if (window.innerWidth >= 640) { // sm breakpoint
+						mobileMenu.classList.add('hidden');
+					}
+				});
+			}
+		</script>
 	</body>
 </html>
 
