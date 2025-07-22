@@ -7,10 +7,7 @@ category: AI & Machine Learning
 
 **Enterprise SaaS software will be dead by 2027.** While that might sound extreme, his reasoning, centered on the evolving build-or-buy dilemma fueled by AI, offers a compelling glimpse into a potential future for business software.
 
-<video controls class="w-full max-w-2xl mx-auto my-6 rounded-lg shadow-lg">
-  <source src="/assets/videos/EnterpriseSoftwareDead.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+[YouTube Short](https://www.youtube.com/shorts/ng9lAorj6wQ)
 
 For years, the decision for companies has been clear: either adapt your internal processes to fit an off-the-shelf software solution (buy), or invest in custom development to perfectly match your unique workflows (build). The "buy" option, dominated by giants like Salesforce and SAP, has often been touted as the efficient choice for non-core competencies. However, Harrison argues that this approach frequently leads to the worst of both worlds.
 
