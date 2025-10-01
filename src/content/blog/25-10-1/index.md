@@ -1,6 +1,6 @@
 ---
 title: 25-10-1 News
-date: "2025-10-1T01:10:03.284Z"
+date: "2025-10-01T01:10:03.284Z"
 description: News for 25-10-1
 ---
 <iframe width="560" height="315" src="https://www.youtube.com/embed/w0d3ea-s_qg?si=0cc9s9hM7yf_pK6_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
