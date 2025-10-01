@@ -1,7 +1,7 @@
 ---
 title: 25-10-1 News
 date: "2025-10-01T01:10:03.284Z"
-description: News for 25-10-1
+description: I am back from parental leave and back to work! It was a great time with my family and I am excited to be back to work. I had an amazing time learning to be a first time dad to an awesome little boy, Teddy. However, I feel like I am a little out of the loop (pun intended) on AI and other tech news.
 ---
 <iframe width="560" height="315" src="https://www.youtube.com/embed/w0d3ea-s_qg?si=0cc9s9hM7yf_pK6_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
