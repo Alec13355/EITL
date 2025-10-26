@@ -1,6 +1,7 @@
 ---
-title: The Brittle Web: Why Everything Broke (and Why It Didn’t Have To)
-subtitle: The internet isn’t fragile — we just built it that way.
+title: The Brittle Web Why Everything Broke (and Why It Didn’t Have To)
+description:: The internet isn’t fragile — we just built it that way.
+date: "2025-10-25T01:10:03.284Z"
 ---
 
 ### 💥 The Brittle Web: Why Everything Broke (and Why It Didn’t Have To)
