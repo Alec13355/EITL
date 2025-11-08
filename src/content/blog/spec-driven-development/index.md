@@ -3,10 +3,11 @@ title: Spec-Driven Development & Spec Kit
 date: "2025-11-08T18:22:59.284Z"
 description: Building software with intent using structured specifications and AI-assisted implementation with GitHub Spec Kit.
 ---
+<iframe width="560" height="315" src="https://www.youtube.com/embed/on6LBuu_MbI?si=VKZURAVJXW2LcZC1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 # Spec-Driven Development & Spec Kit: Building Software With Intent
 
-Video attached above — a live walkthrough of Spec-Driven Development using Spec Kit, GitHub Copilot, and agent-assisted implementation.
+A live walkthrough of Spec-Driven Development using Spec Kit, GitHub Copilot, and agent-assisted implementation.
 
 Modern software development is evolving fast. The days of vague requirements, fragmented documentation, and reactive coding are giving way to a more intentional, AI-assisted era — one where specifications drive implementation rather than code being the first draft of thinking.
 
@@ -99,9 +100,3 @@ specify init
 "We're moving from generation to verification." — Kevin Kraus
 
 You're no longer typing the system into existence — you're designing the blueprint that AI builds from.
-
----
-
-Want a downloadable PDF or slide deck? Just say "export to PDF" or "create slides" and I'll generate them.
-
-*Transcript reference: the content above references material from a recorded session (transcript).*
