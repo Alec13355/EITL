@@ -16,7 +16,7 @@ description: A landing zone in Microsoft Azure is a foundational, well-architect
 
 A landing zone in Microsoft Azure is a foundational, well-architected environment built to host your workloads—apps, data, services—in a safe, consistent, scalable and governed way. According to Microsoft, it is:
 
-> "a standardized and recommended approach for all organizations utilizing Azure. It provides a consistent way to set up and manage your Azure environment at scale."
+> a standardized and recommended approach for all organizations utilizing Azure. It provides a consistent way to set up and manage your Azure environment at scale.
 
 At its core, an Azure landing zone helps you put in place the essential building blocks before you deploy your workloads: subscription and management-group design, identity and access management, network connectivity, governance & policy, security, monitoring, cost management.
 
