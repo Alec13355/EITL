@@ -42,7 +42,7 @@ Moving to the cloud is more than "lift & shift" – it's establishing a new oper
 
 In short: a landing zone is your enterprise-scale blueprint for cloud adoption, enabling migration, modernization and innovation at scale. As one blog puts it:
 
-> "Azure landing zones are the output of a multi-subscription Azure environment that accounts for scale, security governance, networking, and identity. Azure landing zones enable application migration, modernization, and innovation at enterprise-scale in Azure."
+> Azure landing zones are the output of a multi-subscription Azure environment that accounts for scale, security governance, networking, and identity. Azure landing zones enable application migration, modernization, and innovation at enterprise-scale in Azure.
 
 ## Key Benefits
 
@@ -79,7 +79,7 @@ Some core design principles that underpin landing zones include:
 
 With the rise of artificial intelligence and generative AI workloads, the same rigorous landing-zone mindset remains highly relevant. The team at Microsoft Azure has published the AI Landing Zones reference architecture (on GitHub) which is described as:
 
-> "a secure, resilient and scalable reference architecture and reference implementation … to deploy secure and resilient AI Apps & Agents solutions in Azure."
+> a secure, resilient and scalable reference architecture and reference implementation … to deploy secure and resilient AI Apps & Agents solutions in Azure.
 
 Specifically:
 
