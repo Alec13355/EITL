@@ -1,6 +1,6 @@
 ---
 title: Understanding Landing Zones in Azure
-date: "2025-11-08T12:00:00.000Z" 
+date: "2025-11-09T12:00:00.000Z" 
 description: A landing zone in Microsoft Azure is a foundational, well-architected environment built to host your workloads—apps, data, services—in a safe, consistent, scalable and governed way.
 ---
 
