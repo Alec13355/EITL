@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CopilotChecklistForm from '../components/CopilotChecklistForm.astro';
 import { getCollection } from 'astro:content';
 import { xml2js } from 'xml-js';
 import truncate from 'truncate-html';
@@ -59,6 +60,11 @@ const formatDate = (dateStr: string) => {
 					</a>
 				</div>
 			</div>
+		</section>
+
+		<!-- Copilot Checklist Form -->
+		<section class="max-w-2xl mx-auto">
+			<CopilotChecklistForm />
 		</section>
 
 		<!-- Featured Content -->
