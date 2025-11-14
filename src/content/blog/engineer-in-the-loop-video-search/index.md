@@ -1,5 +1,5 @@
 ---
-title: Engineer in the Loop - Turning Your Video Pile Into Something Actually Searchable
+title: Turning Your Video Pile Into Something Actually Searchable
 date: "2025-11-14T02:50:03.284Z"
 description: Stop scrubbing through videos. Build a searchable video system using Azure AI services that lets you ask questions directly against video content—no data science cosplay required.
 category: AI & Machine Learning
@@ -9,7 +9,7 @@ category: AI & Machine Learning
   <iframe width="100%" height="400" src="https://www.youtube.com/embed/76QZW6_7YLQ?si=OznDZYBW46i_BMco" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-lg shadow-lg"></iframe>
 </div>
 
-# 🛠️ Engineer in the Loop: Turning Your Video Pile Into Something Actually Searchable
+# 🛠️ Turning Your Video Pile Into Something Actually Searchable
 
 Most teams are sitting on a mess of video content—training recordings, demos, walk-throughs, "quick" guides—that basically become a landfill the moment they're uploaded. If you've ever tried to find one repair step in a 20-minute video, you already know the pain. Scrubbing back and forth like it's 2008 isn't a strategy.
 
