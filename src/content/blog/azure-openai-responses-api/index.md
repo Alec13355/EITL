@@ -184,3 +184,5 @@ This pattern is a reliable way to build grounded Q&A without chasing hallucinati
 No magic. No vendor lock-in to a heavy SDK. Just HTTP requests and JSON parsing.
 
 If you're shipping real products with Azure OpenAI, this is the foundation you need.
+
+Need help with properly indexing your documents? Drop a line via email or on Linkedin. I'm happy to help!
