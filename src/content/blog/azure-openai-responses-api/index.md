@@ -5,10 +5,6 @@ description: A straightforward guide to building grounded Q&A with Azure OpenAI'
 category: Azure
 ---
 
-# Using Azure OpenAI's Responses API for Grounded Q&A (Without the Hand-Wavy Nonsense)
-
-**Keywords:** Azure OpenAI Responses API example, Azure OpenAI quickstart, Azure OpenAI RAG
-
 Most tutorials about RAG read like marketing copy. This one doesn't.
 
 If you're trying to ship something real, you don't need poetry about "unlocking intelligence." You need a clean way to ask an Azure OpenAI model a question, get an answer based on your data, and know exactly which file the model pulled the answer from.
