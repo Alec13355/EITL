@@ -1,0 +1,31 @@
+ID,Service/Product,Description,Documentation
+1,Azure OpenAI Service,Access advanced language models like GPT-4.,https://learn.microsoft.com/en-us/azure/ai-services/openai/
+2,Azure AI Search,Enterprise search with vector & hybrid search.,https://learn.microsoft.com/en-us/azure/search/
+3,Vision API,Image analysis & object detection.,https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/
+4,Face API,Face detection & recognition.,https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview-identity
+5,Speech Services,Speech-to-text & text-to-speech.,https://learn.microsoft.com/en-us/azure/ai-services/speech-service/
+6,Translator API,Text & document translation.,https://learn.microsoft.com/en-us/azure/ai-services/translator/
+7,Language Understanding (LUIS),Custom NLP models.,https://learn.microsoft.com/en-us/azure/ai-services/luis/
+8,Text Analytics API,"Sentiment, entities, key phrases.",https://learn.microsoft.com/en-us/azure/ai-services/language-service/
+9,Anomaly Detector,Detect anomalies in time-series data.,https://learn.microsoft.com/en-us/azure/ai-services/anomaly-detector/
+10,Content Moderator,Filter harmful or unwanted content.,https://learn.microsoft.com/en-us/azure/ai-services/content-moderator/
+11,Form Recognizer,Extract structured data from documents.,https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/
+12,Personalizer,Real-time personalization.,https://learn.microsoft.com/en-us/azure/ai-services/personalizer/
+13,Azure ML SDK (Python),End-to-end ML lifecycle.,https://learn.microsoft.com/en-us/python/api/overview/azure/ml/
+14,Azure ML REST API,Programmatic ML control.,https://learn.microsoft.com/en-us/rest/api/azureml/
+15,ONNX Runtime,High-performance model inference.,https://onnxruntime.ai/docs/
+16,MLflow Integration,ML lifecycle & tracking.,https://learn.microsoft.com/en-us/azure/machine-learning/how-to-use-mlflow
+17,Azure OpenAI Connector,Connect GPT models to Power Platform.,https://learn.microsoft.com/en-us/connectors/openai/
+18,AI Builder,Prebuilt no-code AI models.,https://learn.microsoft.com/en-us/ai-builder/
+19,Text Analytics Connector,Sentiment & key phrase extraction in Power Platform.,https://learn.microsoft.com/en-us/connectors/cognitiveservicestextanalytics/
+20,Translator Connector,Translate text in flows/apps.,https://learn.microsoft.com/en-us/connectors/microsofttranslator/
+21,Vision Connector,Image analysis inside Power Platform.,https://learn.microsoft.com/en-us/connectors/cognitiveservicescomputervision/
+22,Speech Services Connector,Speech-to-text & TTS automation.,https://learn.microsoft.com/en-us/connectors/cognitiveservicesspeech/
+23,Custom Connector,Create connectors for any REST API.,https://learn.microsoft.com/en-us/connectors/custom-connectors/
+24,Microsoft Graph API,Access Microsoft 365 intelligence.,https://learn.microsoft.com/en-us/graph/
+25,Bot Framework SDK,Build conversational bots.,https://learn.microsoft.com/en-us/azure/bot-service/
+26,Semantic Kernel,Lightweight AI agent framework.,https://learn.microsoft.com/en-us/semantic-kernel/
+27,Mixed Reality Services,APIs for AR/VR & spatial anchors.,https://learn.microsoft.com/en-us/windows/mixed-reality/
+28,Azure Maps,Geospatial intelligence & routing.,https://learn.microsoft.com/en-us/azure/azure-maps/
+29,Windows ML,Run ML models on Windows.,https://learn.microsoft.com/en-us/windows/ai/windows-ml/
+30,Cognitive Services SDKs,SDKs for multiple languages.,https://learn.microsoft.com/en-us/azure/ai-services/
