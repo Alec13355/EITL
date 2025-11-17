@@ -1,8 +1,8 @@
 ---
-title: The Microsoft Copilot Ecosystem: Everything Marketers & Devs Must Know (2025 Guide)
+title: "The Microsoft Copilot Ecosystem: Everything Marketers & Devs Must Know (2025 Guide)"
 date: "2025-11-09T12:00:00.000Z"
-description: A comprehensive 2025 guide to Microsoft's Copilot ecosystem—Microsoft 365 Copilot, Copilot Studio, GitHub Copilot, and Azure AI Foundry. Learn what each product does, how they compare, and practical use cases for marketers, developers, and operations teams.
-category: AI & Machine Learning
+description: "A comprehensive 2025 guide to Microsoft's Copilot ecosystem - Microsoft 365 Copilot, Copilot Studio, GitHub Copilot, and Azure AI Foundry. Learn what each product does, how they compare, and practical use cases for marketers, developers, and operations teams."
+category: "AI & Machine Learning"
 ---
 
 # The Microsoft Copilot Ecosystem: Everything Marketers & Devs Must Know (2025 Guide)
@@ -522,7 +522,7 @@ The Microsoft Copilot ecosystem represents a fundamental shift in how we work wi
 
 The organizations winning with Copilot aren't just adopting technology—they're rethinking workflows, investing in people, and building AI capabilities that compound over time.
 
-**Ready to get started?** Download our [Copilot Adoption Checklist](/copilot-adoption-checklist.md) to guide your implementation, or [sign up for our newsletter](#) to stay updated on the latest Copilot developments and best practices.
+**Ready to get started?** Download our [Copilot Adoption Checklist](public/copilot-adoption-checklist.md) to guide your implementation, or [sign up for our newsletter](https://41hhro.share-na2.hsforms.com/2YRNIrYOOSMGZ9KKpF26uyw) to stay updated on the latest Copilot developments and best practices.
 
 ---
 
