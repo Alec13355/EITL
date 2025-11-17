@@ -1,6 +1,6 @@
 ---
 title: 🤖 The Top 30 Microsoft AI APIs, SDKs & Connectors — Quick Reference Guide
-date: "2025-01-16T20:38:03.284Z"
+date: "2025-11-16T20:38:03.284Z"
 description: Microsoft's Azure AI ecosystem is huge, and it can be tough to keep track of what's what. This cheat sheet rounds up the 30 most useful APIs, SDKs, and connectors across the platform—organized by capability—so you can quickly find the right tool and jump straight into the official docs.
 category: Azure
 ---
