@@ -5,8 +5,6 @@ description: "The biggest unspoken headline from Microsoft Ignite 2025 isn't a n
 category: "AI & Machine Learning"
 ---
 
-# Copilot Studio Is Dead (It Just Doesn't Know It Yet)
-
 This is a big pivot. For a long time, the "Microsoft party line" was clear: use Azure AI Studio (now Microsoft Foundry) if you were a pro-developer; use Copilot Studio if you were a citizen developer or low-code builder.
 
 But from what we're seeing in the announcements at Microsoft Ignite 2025, that distinction is rapidly blurring.
