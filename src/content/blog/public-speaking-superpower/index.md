@@ -1,6 +1,6 @@
 ---
 title: "Public Speaking Is a Tech Superpower: How to Grow Your Luck Surface Area in the AI Era"
-date: "2025-12-10T05:21:00.000Z"
+date: "2025-12-16T05:21:00.000Z"
 description: "Public speaking expands your Luck Surface Area—the amount of opportunity you expose yourself to simply by showing up and sharing your ideas. Learn a simple, four-step path for getting started and why it offers one of the highest career ROIs in tech."
 ---
 
