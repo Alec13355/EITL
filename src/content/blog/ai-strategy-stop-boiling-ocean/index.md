@@ -19,7 +19,7 @@ Before we talk about winning, let's talk about why most AI projects die in the b
 
  * **Building Before Understanding:** Teams jump into complex RAG (Retrieval-Augmented Generation) architectures before asking: "Does this actually move the needle for the CFO?" If it doesn't have a clear KPI, it's a science project, not a product.
  * **Over-Engineering the MVP:** You don't need a massive, interconnected governance platform to summarize internal PDFs. Over-engineering introduces "operational debt" before you've even made a dollar.
- * **The "Shiny Object" Syndrome:** AI teams love the newest models. But the "newest" tool isn't always the right tool. If a simple 1 year-old model does the job for 1/10^{th} the cost, use it. Don't build for your resume; build for the business.
+ * **The "Shiny Object" Syndrome:** AI teams love the newest models. But the "newest" tool isn't always the right tool. If a simple 1 year-old model does the job for 1/10th the cost, use it. Don't build for your resume; build for the business.
 
 ## 4 Low-Complexity, High-ROI Wins
 
