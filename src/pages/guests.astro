@@ -1,0 +1,455 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { xml2js } from 'xml-js';
+
+const RSS_URL = 'https://anchor.fm/s/104ead10c/podcast/rss';
+
+interface Guest {
+  name: string;
+  slug: string;
+  episodeTitle: string;
+  episodeUrl: string;
+  pubDate: string;
+  description: string;
+  headshot?: string;
+  episodeCount: number;
+}
+
+// Mapping of guest names/slugs to LinkedIn profile URLs
+const guestLinkedInMap: Record<string, string> = {
+
+};
+
+// Direct mapping of guest names/slugs to profile picture URLs
+// Add direct image URLs here when services don't work
+// You can get these by right-clicking on LinkedIn profile pictures and copying the image URL
+const guestPhotoMap: Record<string, string> = {
+  // Add direct profile picture URLs here
+  // Example: 'sakari-nahi': 'https://media.licdn.com/dms/image/...',
+  'sakari-nahi': 'https://media.licdn.com/dms/image/v2/C4D03AQHRkV8c4kJz-A/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1636450541828?e=1767830400&v=beta&t=oQGgmoCFtDta4g9mBu5qQcapv1dez7a-ya8311vvA4g',
+  'taylor-black': 'https://media.licdn.com/dms/image/v2/D5603AQEBuN1EbY9ePQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1707934978444?e=1767830400&v=beta&t=hyJlUHxsRXGVJd69CR9HYAl3XtANV8pgl-Vsnt9jBKQ',
+  'sekou-tyler': 'https://media.licdn.com/dms/image/v2/C5603AQEkZJqE9v30Xg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1734872795355?e=1767830400&v=beta&t=bN19z0Z-uU4712hG5W3P9yj1zjN3m_aYx0-Ez8q4QO4',
+  'daniel-ward': 'https://media.licdn.com/dms/image/v2/D5603AQHfG6K6az7j5w/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1690226507042?e=1767830400&v=beta&t=ssLXrTgQdHMuPMU67XOrd8YaBQE9CyD847KOSrHf3tI',
+  'renard-henry': 'https://media.licdn.com/dms/image/v2/D5603AQFqQY6mApKFgw/profile-displayphoto-scale_400_400/B56Zh8wMQEHkAg-/0/1754439665188?e=1767830400&v=beta&t=n7szp-4Qx89lKArgZyDRidJtrFMWagXYw3S1BEtKDKg',
+  'javier-lozano': 'https://media.licdn.com/dms/image/v2/D5603AQGH7atE-rRMgw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1669770353690?e=1767830400&v=beta&t=bpCyqUUxKDxieb1EAVml6-YDQUbVka1Qf19ZmtLF4nk',
+  'dwayne-natwick': 'https://media.licdn.com/dms/image/v2/D5603AQE5LPbmG8ANnA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1687974869060?e=1767830400&v=beta&t=gkkF-iY77_Hx2Gd-H06DlKmlluEMJ5QYNms-dYyxp_0',
+  'derrick-sharpe': 'https://media.licdn.com/dms/image/v2/C4E03AQHJpzuj2Bp3SA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1540778730137?e=1767830400&v=beta&t=O0zsKgIqFynpYWZTY3x4xFyTSzLHk5KMG0hDL017sF8',
+  'michelle-welcks': 'https://media.licdn.com/dms/image/v2/D5603AQFDfLUVypD4eQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1689610377520?e=1767830400&v=beta&t=j09OjFYimTC5IQW_PSzW192ryobnV9Fo3t6l5Sp0FH0',
+  'cameron-presley': 'https://media.licdn.com/dms/image/v2/D4D03AQH7qaeXwNRkdQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1714611189621?e=1767830400&v=beta&t=KJrTWC5gUT6YuACCSCJlCm3qwIZxoc8jviuzAqVVIN0',
+  'arlene-cohen-miller': 'https://media.licdn.com/dms/image/v2/C5103AQHuBn0QhqJiSg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1520908709677?e=1767830400&v=beta&t=NCw_rm1_SwU8dGr6OJh_O2TJOGozbAf-D3lX0T7_pMw',
+  'victoria-pelletier': 'https://media.licdn.com/dms/image/v2/D4E03AQGQHZuBelGI7w/profile-displayphoto-scale_400_400/B4EZhGeWRMGwAk-/0/1753529018208?e=1767830400&v=beta&t=u3bKOrEiz-o8ReZI806SwhUxFP3vvtP-BX7e6HKTYYE',
+  'troy-hite': 'https://media.licdn.com/dms/image/v2/C5603AQHdl6KvngwxtQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1658607929796?e=1767830400&v=beta&t=tYdVcSK5f_aEjFPEPTFGwswpXNiFPIDlsdTqM9rvoGc',
+  'alec-harrison': 'https://media.licdn.com/dms/image/v2/D5603AQE0xlwsJZulxw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1703471206350?e=1767830400&v=beta&t=vYSUXtWvTVr9GcXsnHybljQP2LnSqO9uXM0pbL36mCY',
+  'peter-swimm': 'https://media.licdn.com/dms/image/v2/D5635AQEeGOGlnUB0dA/profile-framedphoto-shrink_400_400/B56ZahY5zkHAAc-/0/1746464382720?e=1766955600&v=beta&t=MDOm9_TfNhi0AotibXQVjnfHyYjeWQG8BT6HwulYDWo',
+  'peter-vasilion': 'https://media.licdn.com/dms/image/v2/C5603AQEDMM7EuWCFlQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1566414036112?e=1767830400&v=beta&t=VzQvq78S02CQsbCx9N-vU4znloYtsIsXK88P01ZyKdo',
+  'clark-sell': 'https://media.licdn.com/dms/image/v2/D5603AQHEByL6rnJLOA/profile-displayphoto-scale_400_400/B56ZlT.fC7KAAg-/0/1758050516482?e=1767830400&v=beta&t=25vUxdytJZAuCokOaLARP83TwWfEOhV-Z7O0WeJcXoc',
+  'kevin-griffin': 'https://media.licdn.com/dms/image/v2/C4D03AQF3MYmKV1KEaw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1563996742528?e=1767830400&v=beta&t=6-JUkxy78hA1OohOSy2AFILK2Hk7pwE-d827uIpKOsA',
+};
+
+let guests: Guest[] = [];
+
+try {
+  const res = await fetch(RSS_URL);
+  const xml = await res.text();
+  const data = xml2js(xml, { compact: true }) as any;
+  
+  // Extract all episodes and identify guests
+  const episodes = data.rss.channel.item.map((item: any) => ({
+    title: item.title._cdata || item.title._text,
+    pubDate: item.pubDate._text,
+    description: item.description._cdata || item.description._text,
+    link: item.link._text,
+  }));
+
+  // Process episodes to extract guest information
+  const guestMap = new Map();
+  
+  episodes.forEach((episode: any) => {
+    const title = episode.title.toLowerCase();
+    
+    // Skip episodes that likely don't have guests
+    if (title.includes('intro') || title.includes('solo') || title.includes('update')) {
+      return;
+    }
+    
+    // Extract guest name from episode title first
+    let guestName = '';
+    const withMatch = title.match(/with\s+([^|]+)/i);
+    const featMatch = title.match(/(?:ft\.?|feat\.?|featuring)\s+([^|]+)/i);
+    
+    // Also check for names directly in titles (like "Clark Sell THAT" or "Kevin Griffin Pushing")
+    const directNameMatches = [
+      /\b(clark\s+sell)\b/i,
+      /\b(kevin\s+griffin)\b/i,
+      /\b(cameron\s+presley)\b/i,
+      /\b(derrick\s+sharpe)\b/i,
+      /\b(sakari\s+nahi)\b/i,
+      /\b(dwayne\s+natwick)\b/i,
+      /\b(captain\s+hyperscaler)\b/i,
+      /\b(peter\s+swimm)\b/i,
+      /\b(javier\s+lozano)\b/i,
+      /\b(troy\s+hite)\b/i,
+      /\b(victoria\s+pelletier)\b/i,
+      /\b(michelle\s+welcks)\b/i,
+      /\b(arlene\s+cohen\s+miller)\b/i,
+      /\b(renard\s+henry)\b/i,
+      /\b(daniel\s+ward)\b/i,
+      /\b(taylor\s+black)\b/i,
+      /\b(sekou\s+tyler)\b/i
+    ];
+    
+    if (withMatch) {
+      guestName = withMatch[1].trim();
+    } else if (featMatch) {
+      guestName = featMatch[1].trim();
+    } else {
+      // Check for direct name matches in title
+      for (const namePattern of directNameMatches) {
+        const match = episode.title.match(namePattern);
+        if (match) {
+          guestName = match[1];
+          break;
+        }
+      }
+    }
+    
+    // Handle aliases early
+    if (guestName && guestName.toLowerCase().includes('captain') && guestName.toLowerCase().includes('hyperscaler')) {
+      guestName = 'Dwayne Natwick';
+    } else if (guestName && guestName.toLowerCase().includes('renard') && guestName.toLowerCase().includes('henry') && guestName.toLowerCase().includes('connected')) {
+      guestName = 'Renard Henry';
+    }
+    
+    // If no guest found in title, try description
+    if (!guestName && episode.description) {
+      const description = episode.description;
+      console.log(description);
+      // Look for specific name patterns in description (only proper names)
+      const namePatterns = [
+        /(?:with|featuring|ft\.?|guest)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)/g,
+        /joined\s+by\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)/g,
+        /([A-Z][a-z]+\s+[A-Z][a-z]+)(?:\s+(?:joins|discusses|shares|talks))/g
+      ];
+      
+      let bestMatch = '';
+      for (const pattern of namePatterns) {
+        const matches = [...description.matchAll(pattern)];
+        for (const match of matches) {
+          const candidateName = match[1].trim();
+          // Only accept if it looks like a real person name (2+ words, proper capitalization)
+          if (candidateName.split(' ').length >= 2 && 
+              /^[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+$/.test(candidateName)) {
+            bestMatch = candidateName;
+            break;
+          }
+        }
+        if (bestMatch) break;
+      }
+      
+      if (bestMatch) {
+        guestName = bestMatch;
+      }
+    }
+    
+    if (guestName) {
+      // Clean up common patterns and titles
+      guestName = guestName.replace(/\s*[-–—]\s*.*$/, '').trim();
+      
+      // Remove titles and common prefixes/suffixes
+      const titlesToRemove = [
+        /\b(?:ceo|cto|cfo|coo|president|director|manager|head\s+of|vp|vice\s+president|senior|lead|principal|architect|engineer|developer|analyst|consultant|specialist|expert|founder|co-founder)\b/gi,
+        /\b(?:dr\.?|mr\.?|ms\.?|mrs\.?|prof\.?|professor)\b/gi,
+        /\b(?:of\s+\w+|at\s+\w+|from\s+\w+)\b/gi
+      ];
+      
+      titlesToRemove.forEach(pattern => {
+        guestName = guestName.replace(pattern, '').trim();
+      });
+      
+      // Clean up extra spaces
+      guestName = guestName.replace(/\s+/g, ' ').trim();
+      
+      // Special case handling for known names and aliases
+      if (guestName.toLowerCase().includes('zure') && guestName.toLowerCase().includes('sakari')) {
+        guestName = 'Sakari Nahi';
+      } else if (guestName.toLowerCase().includes('dwayne') && guestName.toLowerCase().includes('natwick')) {
+        guestName = 'Dwayne Natwick';
+      } else if (guestName.toLowerCase().includes('captain') && guestName.toLowerCase().includes('hyperscaler')) {
+        guestName = 'Dwayne Natwick';
+      } else if (guestName.toLowerCase().includes('renard') && guestName.toLowerCase().includes('henry') && guestName.toLowerCase().includes('connected')) {
+        guestName = 'Renard Henry';
+      }
+      
+      // Skip if name is too short, contains common non-name words, or doesn't look like a person's name
+      const nonNames = ['ai', 'tech', 'build', 'microsoft', 'azure', 'cloud', 'data', 'the', 'and', 'or', 'new', 'tools', 'samples', 'insights', 'models', 'mix', 'hard', 'real', 'talk', 'learn', 'speech', 'agent', 'framework', 'foundry', 'local', 'mode'];
+      const words = guestName.toLowerCase().split(' ');
+      
+      // Skip specific people who aren't actually guests
+      const excludedNames = ['craig federighi'];
+      if (excludedNames.includes(guestName.toLowerCase())) {
+        return;
+      }
+      
+      // Additional checks for non-person names
+      const hasCommonNonNameWords = words.some(word => nonNames.includes(word));
+      const isAllCaps = guestName === guestName.toUpperCase();
+      const hasTechTerms = /\b(api|app|framework|platform|system|service|tool|software|solution|product)\b/i.test(guestName);
+      const isCompanyName = /\b(inc|llc|corp|ltd|company|technologies|solutions|systems)\b/i.test(guestName);
+      const isConceptNotPerson = /\b(to|for|of|the|and|or|in|on|at|with|from)\b/i.test(guestName);
+      
+      if (guestName.length < 5 || 
+          words.length < 2 || 
+          hasCommonNonNameWords ||
+          isAllCaps ||
+          hasTechTerms ||
+          isCompanyName ||
+          isConceptNotPerson ||
+          guestName.includes('http') ||
+          guestName.includes('www') ||
+          guestName.includes('.com') ||
+          /\d/.test(guestName) ||
+          words.length > 4) { // Most human names are 2-4 words
+        return;
+      }
+      
+      // Capitalize each word properly
+      guestName = guestName.split(' ').map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+      ).join(' ');
+      
+      const slug = guestName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+      
+      // Get profile picture - check direct mapping first
+      let linkedinPhoto = guestPhotoMap[slug] || guestPhotoMap[guestName.toLowerCase()];
+      
+      // If no direct photo mapping, try alternative methods
+      if (!linkedinPhoto) {
+        // Try to get LinkedIn URL from mapping first, then from description
+        let linkedinUrl = guestLinkedInMap[slug] || guestLinkedInMap[guestName.toLowerCase()];
+        if (!linkedinUrl && episode.description) {
+          const linkedinMatch = episode.description.match(/https?:\/\/(?:www\.)?linkedin\.com\/(?:in|pub)\/([a-zA-Z0-9-]+)/i);
+          if (linkedinMatch) {
+            linkedinUrl = `https://www.linkedin.com/in/${linkedinMatch[1]}`;
+          }
+        }
+        
+        // Try to get profile picture using LinkedIn username
+        if (linkedinUrl) {
+          const username = linkedinUrl.match(/linkedin\.com\/in\/([^\/\?]+)/)?.[1];
+          if (username) {
+            // Try unavatar.io (may not always work)
+            linkedinPhoto = `https://unavatar.io/linkedin/${username}`;
+          }
+        }
+      }
+      
+      let headshot = linkedinPhoto || `/guests/${slug}.jpg`;
+      
+      if (guestMap.has(slug)) {
+        // Guest already exists - increment count and update if this episode is newer
+        const existing = guestMap.get(slug);
+        const newCount = existing.episodeCount + 1;
+        
+        // Check direct photo mapping and LinkedIn URL mapping if we don't have a photo yet
+        if (!linkedinPhoto) {
+          // Check direct photo mapping first
+          linkedinPhoto = guestPhotoMap[slug] || guestPhotoMap[guestName.toLowerCase()];
+          
+          // If still no photo, try LinkedIn URL
+          if (!linkedinPhoto) {
+            let linkedinUrl = guestLinkedInMap[slug] || guestLinkedInMap[guestName.toLowerCase()];
+            if (linkedinUrl) {
+              const username = linkedinUrl.match(/linkedin\.com\/in\/([^\/\?]+)/)?.[1];
+              if (username) {
+                linkedinPhoto = `https://unavatar.io/linkedin/${username}`;
+              }
+            }
+          }
+          
+          headshot = linkedinPhoto || `/guests/${slug}.jpg`;
+        }
+        
+        if (new Date(episode.pubDate) > new Date(existing.pubDate)) {
+          // Update with newest episode info but keep the count
+          guestMap.set(slug, {
+            ...existing,
+            episodeTitle: episode.title,
+            episodeUrl: episode.link,
+            pubDate: episode.pubDate,
+            description: episode.description,
+            headshot: linkedinPhoto || existing.headshot || `/guests/${slug}.jpg`,
+            episodeCount: newCount
+          });
+        } else {
+          // Just increment count, keep existing episode as display episode
+          // But update headshot if we found a LinkedIn photo
+          guestMap.set(slug, {
+            ...existing,
+            headshot: linkedinPhoto || existing.headshot || `/guests/${slug}.jpg`,
+            episodeCount: newCount
+          });
+        }
+      } else {
+        guestMap.set(slug, {
+          name: guestName,
+          slug,
+          episodeTitle: episode.title,
+          episodeUrl: episode.link,
+          pubDate: episode.pubDate,
+          description: episode.description,
+          headshot,
+          episodeCount: 1
+        });
+      }
+    }
+  });
+
+  // Convert to array and sort by most recent episode date
+  guests = Array.from(guestMap.values()).sort((a, b) => 
+    new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
+  );
+
+} catch (e) {
+  console.error('Error fetching RSS feed:', e);
+  guests = [];
+}
+
+const formatDate = (dateStr: string) => {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+};
+---
+
+<Layout title="Guests | Engineer In The Loop">
+  <div class="max-w-6xl mx-auto bg-tealbg text-sand rounded-lg shadow-sm p-8">
+    <h1 class="text-3xl font-bold text-sand mb-8">Podcast Guests</h1>
+    
+    <!-- Guest Filter -->
+    <div class="mb-8">
+      <div class="flex flex-wrap gap-4 mb-6">
+        <button id="filter-all" class="filter-btn active px-4 py-2 rounded-lg bg-accent text-white font-medium">
+          All Guests
+        </button>
+        <button id="filter-recent" class="filter-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-800 hover:bg-gray-300 font-medium">
+          Recent (Last 6 months)
+        </button>
+        <button id="filter-featured" class="filter-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-800 hover:bg-gray-300 font-medium">
+          Featured Guests (3+ episodes)
+        </button>
+        <input type="text" id="search-input" placeholder="Search guests..." 
+               class="px-4 py-2 rounded-lg border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent">
+      </div>
+    </div>
+
+    <!-- Guests Grid -->
+    <div id="guests-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {guests.map((guest) => (
+        <div class="guest-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+             data-guest-name={guest.name.toLowerCase()}
+             data-pub-date={guest.pubDate}
+             data-episode-count={guest.episodeCount}
+             onclick={`window.location.href='${guest.episodeUrl}'`}>
+          <div class="p-6">
+            <!-- Guest Headshot -->
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden bg-gray-200">
+              <img 
+                src={guest.headshot} 
+                alt={`${guest.name} headshot`}
+                class="w-full h-full object-cover"
+                onerror="this.src='/default-avatar.jpg'"
+              />
+            </div>
+            
+            <!-- Guest Info -->
+            <h3 class="text-xl font-semibold text-gray-900 text-center mb-2">{guest.name}</h3>
+            <p class="text-sm text-gray-600 text-center mb-2">{formatDate(guest.pubDate)}</p>
+            <p class="text-sm text-gray-700 text-center font-medium line-clamp-2 mb-2">{guest.episodeTitle}</p>
+            <div class="flex justify-center items-center gap-4">
+              <span class="text-xs text-blue-600 font-semibold">
+                {guest.episodeCount} episode{guest.episodeCount > 1 ? 's' : ''}
+              </span>
+              {guest.episodeCount > 2 && (
+                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                  Featured Guest
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {guests.length === 0 && (
+      <div class="text-center py-12">
+        <p class="text-sand text-lg">No guests found. Check back soon for upcoming episodes!</p>
+      </div>
+    )}
+  </div>
+
+  <script>
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    const guestCards = document.querySelectorAll('.guest-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active', 'bg-accent', 'text-white');
+          btn.classList.add('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+        });
+        
+        // Add active class to clicked button
+        button.classList.add('active', 'bg-accent', 'text-white');
+        button.classList.remove('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+        
+        filterGuests();
+      });
+    });
+
+    searchInput.addEventListener('input', filterGuests);
+
+    function filterGuests() {
+      const activeFilter = document.querySelector('.filter-btn.active')?.id;
+      const searchTerm = searchInput.value.toLowerCase();
+      const sixMonthsAgo = new Date();
+      sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+
+      guestCards.forEach(card => {
+        const guestName = card.getAttribute('data-guest-name') || '';
+        const pubDate = new Date(card.getAttribute('data-pub-date') || '');
+        const episodeCount = parseInt(card.getAttribute('data-episode-count') || '0');
+        
+        let showCard = true;
+
+        // Apply filter
+        if (activeFilter === 'filter-recent') {
+          showCard = pubDate >= sixMonthsAgo;
+        } else if (activeFilter === 'filter-featured') {
+          showCard = episodeCount >= 3;
+        }
+
+        // Apply search
+        if (searchTerm && !guestName.includes(searchTerm)) {
+          showCard = false;
+        }
+
+        if (showCard) {
+          (card as HTMLElement).style.display = 'block';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+  <style>
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  </style>
+</Layout>
