@@ -2,6 +2,7 @@
 title: "The AI Snake Oil Era: Stop Selling Prompts Like They're Products"
 date: "2026-01-17T21:11:00.000Z"
 description: A massive portion of what is currently being sold as "AI products" are not products at all. They are prompts. Usually bad ones. With a Stripe checkout slapped on the front.
+category: AI & Machine Learning
 ---
 
 Alright—gloves off. We need to talk about the absolute nonsense flooding the industry right now. A massive portion of what is currently being sold as "AI products" are not products at all.
