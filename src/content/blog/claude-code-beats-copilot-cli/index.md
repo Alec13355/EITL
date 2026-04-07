@@ -1,6 +1,6 @@
 ---
 title: Claude Code Beats Copilot CLI
-date: "2025-04-06T06:13:37.550Z"
+date: "2026-04-06T06:13:37.550Z"
 description: I switched from Gemini to Claude Code and gave it a real test against GitHub Copilot CLI on a brownfield .NET project. Here's what happened.
 ---
 
