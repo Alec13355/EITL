@@ -142,4 +142,4 @@ We're not at "replace the engineer" territory. We're at "the engineer who uses S
 
 ---
 
-**Have you tried Squad yet?** I'd love to hear how you're using it—drop me a message on <a href="https://linkedin.com/in/alecmharrison">LinkedIn</a> or find me at <a href="https://eitl.ai">eitl.ai</a>.
+**Have you tried Squad yet?** I'd love to hear how you're using it—drop me a message on <a href="https://linkedin.com/in/alec13355">LinkedIn</a> or find me at <a href="https://eitl.ai">eitl.ai</a>.
