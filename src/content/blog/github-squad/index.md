@@ -1,10 +1,8 @@
 ---
 title: "Meet Your New AI Dev Team: A Real-World Look at GitHub Squad"
-date: "2026-04-19T05:29:42.805Z"
+date: "2026-04-26T08:35:28.109Z"
 description: What if AI could do more than assist you? GitHub Squad turns Copilot into a full AI development team—with architecture, backlog generation, parallel execution, and real quality gates.
 ---
-
-# Meet Your New AI Dev Team: A Real-World Look at GitHub Squad
 
 You've been using GitHub Copilot to autocomplete lines and write functions faster. That's great—but what if AI could do more than assist you? What if it could actually *work alongside you* as a team?
 
