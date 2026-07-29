@@ -1,21 +1,21 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import { formatDate } from '../../utils/date';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  return posts.map((post: any) => ({ params: { slug: post.slug } }));
+  return posts.map((post: any) => ({ params: { slug: post.id } }));
 }
 
 const { slug } = Astro.params;
-const post = (await getCollection('blog')).find(post => post.slug === slug);
+const post = (await getCollection('blog')).find(post => post.id === slug);
 
 if (!post) {
   return Astro.redirect('/404');
 }
 
-const { Content } = await post.render();
+const { Content } = await render(post);
 ---
 
 <Layout title={post.data.title}>

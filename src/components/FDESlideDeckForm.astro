@@ -1,6 +1,9 @@
 ---
-// This component handles the Copilot Adoption Checklist form
+// This component handles the "Forward Deployed Engineer" slide deck signup form
 // It submits to HubSpot and then triggers a file download
+//
+// TODO: drop the actual slide deck at public/forward-deployed-engineer-slides.pdf
+// (referenced below) before shipping this — the download link 404s until it exists.
 //
 // SETUP INSTRUCTIONS:
 // 1. Create a form in HubSpot (Marketing > Lead Capture > Forms)
@@ -16,13 +19,13 @@
 ---
 
 <div class="bg-tealbg rounded-lg shadow-sm p-6 border border-accent/30">
-	<h2 class="text-2xl font-bold text-sand mb-4">Get My Copilot Adoption Checklist</h2>
+	<h2 class="text-2xl font-bold text-sand mb-4">Grab My FDE Slide Deck</h2>
 	<p class="text-sand/80 mb-6">
-		Download a comprehensive checklist to guide your Microsoft Copilot implementation. 
-		Get step-by-step guidance for planning, piloting, and rolling out Copilot across your organization.
+		Download "How to Be a Forward Deployed Engineer" — my slide deck on what the role
+		actually looks like, the skills that matter, and how to break in.
 	</p>
-	
-	<form id="copilot-checklist-form" class="space-y-4">
+
+	<form id="fde-deck-form" class="space-y-4">
 		<div>
 			<label for="name" class="block text-sm font-medium text-sand mb-1">Name</label>
 			<input 
@@ -50,7 +53,7 @@
 			id="submit-btn"
 			class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-tealbg bg-accent hover:bg-accent/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
 		>
-			<span id="submit-text">Download Checklist</span>
+			<span id="submit-text">Download Now</span>
 			<span id="submit-loading" class="hidden ml-2">
 				<svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
 					<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -58,6 +61,7 @@
 				</svg>
 			</span>
 		</button>
+		<p class="text-sand/60 text-sm text-center mt-2">Full course coming soon — this deck is a sneak peek.</p>
 		<div id="error-message" class="hidden text-red-500 text-sm mt-2"></div>
 		<div id="success-message" class="hidden text-green-500 text-sm mt-2"></div>
 	</form>
@@ -68,12 +72,8 @@
 	// You can find this in your HubSpot account settings
 	const HUBSPOT_PORTAL_ID = 244360500;
 	const HUBSPOT_FORM_GUID = 'ab400a92-2183-4a3c-94e1-8ddda3abb73c';
-	
-	// If using HubSpot Forms API v3, you'll need an API key
-	// For public forms, you can use the embedded form approach or Forms API
-	const HUBSPOT_API_KEY = 'pat-na2-04c6fc96-5130-43f5-9e5a-38246c925b67';
 
-	const form = document.getElementById('copilot-checklist-form') as HTMLFormElement;
+	const form = document.getElementById('fde-deck-form') as HTMLFormElement;
 	const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
 	const submitText = document.getElementById('submit-text') as HTMLSpanElement;
 	const submitLoading = document.getElementById('submit-loading') as HTMLSpanElement;
@@ -146,13 +146,13 @@
 			}
 			
 			// Show success message
-			successMessage.textContent = 'Thank you! Downloading your checklist...';
+			successMessage.textContent = 'Thank you! Downloading your slide deck...';
 			successMessage.classList.remove('hidden');
-			
+
 			// Trigger file download
 			const link = document.createElement('a');
-			link.href = '/copilot-adoption-checklist.md';
-			link.download = 'copilot-adoption-checklist.md';
+			link.href = '/forward-deployed-engineer-slides.pdf';
+			link.download = 'forward-deployed-engineer-slides.pdf';
 			document.body.appendChild(link);
 			link.click();
 			document.body.removeChild(link);
@@ -170,7 +170,7 @@
 		} finally {
 			// Reset button state
 			submitBtn.disabled = false;
-			submitText.textContent = 'Download Checklist';
+			submitText.textContent = 'Download Now';
 			submitLoading.classList.add('hidden');
 		}
 	});
