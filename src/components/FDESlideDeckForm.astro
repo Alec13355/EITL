@@ -1,27 +1,11 @@
 ---
-// This component handles the "Forward Deployed Engineer" slide deck signup form
-// It submits to HubSpot and then triggers a file download
-//
-// TODO: drop the actual slide deck at public/forward-deployed-engineer-slides.pdf
-// (referenced below) before shipping this — the download link 404s until it exists.
-//
-// SETUP INSTRUCTIONS:
-// 1. Create a form in HubSpot (Marketing > Lead Capture > Forms)
-// 2. Add fields: First Name, Last Name, Email
-// 3. Get your HubSpot Portal ID (found in Settings > Account Setup > Account Defaults)
-// 4. Get your Form GUID (found in the form's embed code or API)
-// 5. Add these environment variables to your .env file:
-//    PUBLIC_HUBSPOT_PORTAL_ID=your_portal_id
-//    PUBLIC_HUBSPOT_FORM_GUID=your_form_guid
-//
-// Note: If HubSpot isn't configured, the form will still work and download the file,
-// but won't submit data to HubSpot.
+// Signs people up in AlecCRM (campaign event 1268), which emails them their personal download link.
 ---
 
 <div class="bg-tealbg rounded-lg shadow-sm p-6 border border-accent/30">
 	<h2 class="text-2xl font-bold text-sand mb-4">Grab My FDE Slide Deck</h2>
 	<p class="text-sand/80 mb-6">
-		Download "How to Be a Forward Deployed Engineer" — my slide deck on what the role
+		Get "How to Be a Forward Deployed Engineer" — my slide deck on what the role
 		actually looks like, the skills that matter, and how to break in. Course and email follow up coming soon!
 	</p>
 
@@ -48,12 +32,16 @@
 				placeholder="your.email@example.com"
 			/>
 		</div>
+		<div class="absolute -left-[9999px]" aria-hidden="true">
+			<label for="website">Leave this empty</label>
+			<input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+		</div>
 		<button 
 			type="submit" 
 			id="submit-btn"
 			class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-tealbg bg-accent hover:bg-accent/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
 		>
-			<span id="submit-text">Download Now</span>
+			<span id="submit-text">Email Me the Deck</span>
 			<span id="submit-loading" class="hidden ml-2">
 				<svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
 					<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -68,10 +56,8 @@
 </div>
 
 <script>
-	// HubSpot configuration - replace with your HubSpot portal ID
-	// You can find this in your HubSpot account settings
-	const HUBSPOT_PORTAL_ID = 244360500;
-	const HUBSPOT_FORM_GUID = 'ab400a92-2183-4a3c-94e1-8ddda3abb73c';
+	const SIGNUP_URL = 'https://aleccrm-alec.azurewebsites.net/api/signup';
+	const EVENT_ID = '1268';
 
 	const form = document.getElementById('fde-deck-form') as HTMLFormElement;
 	const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
@@ -82,97 +68,41 @@
 
 	form.addEventListener('submit', async (e) => {
 		e.preventDefault();
-		
-		const nameInput = document.getElementById('name') as HTMLInputElement;
-		const emailInput = document.getElementById('email') as HTMLInputElement;
-		
-		const name = nameInput.value.trim();
-		const email = emailInput.value.trim();
-		
-		// Hide previous messages
+		const data = new FormData(form);
+
 		errorMessage.classList.add('hidden');
 		successMessage.classList.add('hidden');
-		
-		// Show loading state
 		submitBtn.disabled = true;
-		submitText.textContent = 'Submitting...';
+		submitText.textContent = 'Sending...';
 		submitLoading.classList.remove('hidden');
-		
-		try {
-			// Submit to HubSpot
-			if (HUBSPOT_PORTAL_ID && HUBSPOT_FORM_GUID) {
-				// Using HubSpot Forms API v3
-				const hubspotUrl = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
-				
-				const formData = {
-					fields: [
-						{
-							objectTypeId: '0-1',
-							name: 'firstname',
-							value: name.split(' ')[0] || name
-						},
-						{
-							objectTypeId: '0-1',
-							name: 'lastname',
-							value: name.split(' ').slice(1).join(' ') || ''
-						},
-						{
-							objectTypeId: '0-1',
-							name: 'email',
-							value: email
-						}
-					],
-					context: {
-						pageUri: window.location.href,
-						pageName: document.title
-					}
-				};
-				
-				const response = await fetch(hubspotUrl, {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify(formData)
-				});
-				
-				if (!response.ok) {
-					throw new Error('Failed to submit to HubSpot');
-				}
-			} else {
-				// Fallback: If HubSpot isn't configured, we'll still allow download
-				// You might want to log this to a service like Formspree, Netlify Forms, etc.
-				console.warn('HubSpot not configured, skipping form submission');
-			}
-			
-			// Show success message
-			successMessage.textContent = 'Thank you! Downloading your slide deck...';
-			successMessage.classList.remove('hidden');
 
-			// Trigger file download
-			const link = document.createElement('a');
-			link.href = '/forward-deployed-engineer-slides.pdf';
-			link.download = 'forward-deployed-engineer-slides.pdf';
-			document.body.appendChild(link);
-			link.click();
-			document.body.removeChild(link);
-			
-			// Reset form after a short delay
-			setTimeout(() => {
-				form.reset();
-				successMessage.classList.add('hidden');
-			}, 3000);
-			
+		try {
+			const response = await fetch(SIGNUP_URL, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					event: EVENT_ID,
+					name: String(data.get('name') ?? '').trim(),
+					email: String(data.get('email') ?? '').trim(),
+					website: data.get('website'),
+				}),
+			});
+			if (!response.ok) {
+				throw new Error(response.status === 429 ? 'Too many tries. Please try again in an hour.' : 'signup failed');
+			}
+			form.reset();
+			successMessage.textContent = 'Thanks! Check your inbox for your download link. It can take a few minutes, and may land in spam.';
+			successMessage.classList.remove('hidden');
 		} catch (error) {
 			console.error('Error submitting form:', error);
-			errorMessage.textContent = 'There was an error submitting your information. Please try again.';
+			errorMessage.textContent = error instanceof Error && error.message.startsWith('Too many')
+				? error.message
+				: 'Something went wrong. Please try again.';
 			errorMessage.classList.remove('hidden');
 		} finally {
-			// Reset button state
 			submitBtn.disabled = false;
-			submitText.textContent = 'Download Now';
+			submitText.textContent = 'Email Me the Deck';
 			submitLoading.classList.add('hidden');
 		}
 	});
 </script>
-
